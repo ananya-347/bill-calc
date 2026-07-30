@@ -74,7 +74,12 @@ void addAppliance() {
 
 void loadFromFile() {
     ifstream file("data.txt");
-    if (!file) return;
+    // If file doesn't exist, create it and exit gracefully
+    if (!file) {
+        ofstream createfile("data.txt");
+        createfile.close();
+        return;
+    }
 
     string line;
     while (getline(file, line)) {
